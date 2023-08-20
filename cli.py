@@ -1,23 +1,19 @@
-import sqlite3
+from models import User,Session
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
 
-conn = sqlite3.connect('models.db')
-cursor = conn.cursor()
-import click
+engine = create_engine('sqlite:///models.db')
+Session = sessionmaker(bind=engine)
+session = Session()
 
-@click.command()
-@click.argument('username')
-@click.argument('email')
-def add_record(username, email):
-    cursor.execute("INSERT INTO users (name, email) VALUES (?, ?)", (username, email))
-    conn.commit()
-    click.echo("Record added successfully!")
+user_id = input("Enter the user ID to update: ")
+new_email = input("Enter the new email address: ")
 
-@click.command()
-@click.argument('user_id')
-@click.argument('new_email')
-def update_email(user_id, new_email):
-    cursor.execute("UPDATE users SET email = ? WHERE id = ?", (new_email, user_id))
-    conn.commit()
-    click.echo("Email updated successfully!")
+user = session.query(User).filter_by(id=user_id).first()
+if user:
+    user.email = new_email
+    session.commit()
+    print("User email updated successfully!")
+else:
+    print("User not found.")
 
-# More command handlers...
