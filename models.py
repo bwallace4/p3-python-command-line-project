@@ -1,4 +1,3 @@
-# models.py
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
@@ -31,12 +30,4 @@ class Review(Base):
 # Create an engine and session
 engine = create_engine('sqlite:///movies.db', echo=True)
 Session = sessionmaker(bind=engine)
-
-
-# def __repr__(self):
-#         return f"User {self.id}: "\
-#              + f"{self.username} "\
-#              + f"email: {self.email}\n"
-
-
 

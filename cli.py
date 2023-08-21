@@ -1,19 +1,52 @@
-from models import User,Session
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from models import Base, Director, Movie, Review,engine
 
-engine = create_engine('sqlite:///models.db')
 Session = sessionmaker(bind=engine)
 session = Session()
-
-user_id = input("Enter the user ID to update: ")
-new_email = input("Enter the new email address: ")
-
-user = session.query(User).filter_by(id=user_id).first()
-if user:
-    user.email = new_email
+def create_director(name):
+    director = Director(name=name)
+    session.add(director)
     session.commit()
-    print("User email updated successfully!")
-else:
-    print("User not found.")
 
+def create_movie(title, director_id):
+    movie = Movie(title=title, director_id=director_id)
+    session.add(movie)
+    session.commit()
+
+def create_review(movie_id, rating, comment):
+    review = Review(movie_id=movie_id, rating=rating, comment=comment)
+    session.add(review)
+    session.commit()
+
+def read_movies():
+    movies = session.query(Movie).all()
+    for movie in movies:
+        director_name = movie.director.name if movie.director else "Unknown Director"
+        print(f"ID: {movie.id}, Title: {movie.title}, Director: {director_name}")
+
+
+def main():
+    while True:
+        print("1. Add Movie")
+        print("2. List Movies")
+        print("3. Add Review")
+        print("4. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            title = input("Enter movie title: ")
+            director_id = int(input("Enter director ID: "))
+            create_movie(title, director_id)
+        elif choice == '2':
+            read_movies()
+        elif choice == '3':
+            movie_id = int(input("Enter movie ID: "))
+            rating = int(input("Enter rating: "))
+            comment = input("Enter comment: ")
+            create_review(movie_id, rating, comment)
+        elif choice == '4':
+            break
+
+if __name__ == "__main__":
+    main()
