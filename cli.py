@@ -26,6 +26,7 @@ def read_movies():
         print(f"ID: {movie.id}, Title: {movie.title}, Director: {director_name}")
 
 
+
 def main():
     while True:
         print("1. Add Movie")

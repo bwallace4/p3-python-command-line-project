@@ -1,4 +1,7 @@
 #Flatiron-sample-p3-python-command-line-project
+-migrations problems
+-trying to pass in date to the database
+- null movie date
 ## Project Proposals 
 
 ### Idea 1
