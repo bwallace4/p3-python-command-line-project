@@ -4,13 +4,14 @@ from models import Base, Director, Movie, Review,engine
 
 Session = sessionmaker(bind=engine)
 session = Session()
-def create_director(name):
-    director = Director(name=name)
+
+def create_director(name,number_of_films,nationality):
+    director = Director(name=name,number_of_films=number_of_films,nationality=nationality)
     session.add(director)
     session.commit()
 
-def create_movie(title, director_id):
-    movie = Movie(title=title, director_id=director_id)
+def create_movie(title, director_id,movie_length):
+    movie = Movie(title=title,movie_length=movie_length, director_id=director_id)
     session.add(movie)
     session.commit()
 
@@ -22,7 +23,7 @@ def create_review(movie_id, rating, comment):
 def read_movies():
     movies = session.query(Movie).all()
     for movie in movies:
-        director_name = movie.director.name if movie.director else "Unknown Director"
+        director_name = movie.director.name if movie.director else "Indy Film"
         print(f"ID: {movie.id}, Title: {movie.title}, Director: {director_name}")
 
 
