@@ -9,6 +9,8 @@ class Director(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
+    birthdate = Column(String)
+    nationality = Column(String)
     movies = relationship("Movie", backref="director", lazy=True)
 
 class Movie(Base):
@@ -16,6 +18,8 @@ class Movie(Base):
 
     id = Column(Integer, primary_key=True)
     title = Column(String)
+    release_date = Column(String)
+    movie_length = Column(Integer) 
     director_id = Column(Integer, ForeignKey('directors.id'))
     reviews = relationship("Review", backref="movie", lazy=True)
 
