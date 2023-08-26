@@ -1,6 +1,10 @@
-# p3-python-command-line-project
+# Directme
+As a big fan of movies and Hollywood in general, I thought how could i design my project to include this. Sometimes I forget who directed some of my favorite films. 
+DIRECTME is a command line interface that allows the user to query data from my database in Sqlalchemy. a film library database. Giving the user options on updating and reading information about the film industry. Whether its the director, the reviews or the movie itself. The three tables creates a one-to-many relationship and are joined together by foreign keys. 
 
-My project is a cli app that interacts with a film library database. Giving the user options on updating and reading information about the film industry. Whether its the director, the reviews or the movie itself. 
+
+
+
 
 ## Table of Contents
 
@@ -18,14 +22,15 @@ My project lets you insert your own information or lookup information you didn't
 ## Getting Started
 You always want to fork and clone your repo. install libraries sqlalchemy and alembic, clicker 
 also a database sqlite 
+python3 and pip 
 
 
 ### Installation
 
 1. Clone the repository: `git clone https://github.com/bwallace4/p3-python-command-line-project.git`
 2. Navigate to the project directory: `cd p3-python-command-line-project`
-3. Install dependencies: `pipenv install` 
-5. Run the project: `python cli.py` 
+3. Install dependencies: `pipenv install`
+4. Run the project: `python cli.py` 
 
 ## Usage
 
