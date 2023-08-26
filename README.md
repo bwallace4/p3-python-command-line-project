@@ -1,10 +1,8 @@
 # Directme
+
+
 As a big fan of movies and Hollywood in general, I thought how could i design my project to include this. Sometimes I forget who directed some of my favorite films. 
 DIRECTME is a command line interface that allows the user to query data from my database in Sqlalchemy. a film library database. Giving the user options on updating and reading information about the film industry. Whether its the director, the reviews or the movie itself. The three tables creates a one-to-many relationship and are joined together by foreign keys. 
-
-
-
-
 
 ## Table of Contents
 
@@ -34,8 +32,11 @@ python3 and pip
 
 ## Usage
 
-This is how we communicate with the terminal 
-
+This is how we communicate with the terminal run  ./cli.py
+My lib.py is where I keep most of my data.
+seed.py is where i seed my data using the faker library.
+debug.py is where I test bugs in my application.
+models.py is where I keep my data tables.
 
 
 
