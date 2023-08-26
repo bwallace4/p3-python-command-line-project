@@ -1,54 +1,64 @@
-from sqlalchemy import create_engine
+#!/usr/bin/env python3
+from datetime import datetime
+import click
 from sqlalchemy.orm import sessionmaker
-from models import Base, Director, Movie, Review,engine
+from models import Base, Director, Movie, Review, engine
 
 Session = sessionmaker(bind=engine)
 session = Session()
 
-def create_director(name,number_of_films,nationality):
-    director = Director(name=name,number_of_films=number_of_films,nationality=nationality)
+@click.command()
+def create_director():
+    name = click.prompt("Enter director name")
+    birthday_str = click.prompt("Enter director's birthday (YYYY-MM-DD)")
+
+    try:
+        birthday = datetime.strptime(birthday_str, "%Y-%m-%d")
+    except ValueError:
+        click.echo("Invalid date format. Please use YYYY-MM-DD.")
+        return
+    number_of_films = click.prompt("Enter number of films directed", type=int)
+    nationality = click.prompt("Enter nationality")
+    director = Director(name=name,birthday=birthday, number_of_films=number_of_films, nationality=nationality)
     session.add(director)
     session.commit()
+    click.echo("Director created!")
 
-def create_movie(title, director_id,movie_length):
-    movie = Movie(title=title,movie_length=movie_length, director_id=director_id)
+@click.command()
+def create_movie():
+    title = click.prompt("Enter movie title")
+    director_id = click.prompt("Enter director ID", type=int)
+    movie_length = click.prompt("Enter movie length", type=int)
+    movie = Movie(title=title, director_id=director_id, movie_length=movie_length)
     session.add(movie)
     session.commit()
+    click.echo("Movie created!")
 
-def create_review(movie_id, rating, comment):
+@click.command()
+def create_review():
+    movie_id = click.prompt("Enter movie ID", type=int)
+    rating = click.prompt("Enter rating", type=int)
+    comment = click.prompt("Enter comment")
     review = Review(movie_id=movie_id, rating=rating, comment=comment)
     session.add(review)
     session.commit()
+    click.echo("Review created!")
 
-def read_movies():
+@click.command()
+def list_movies():
     movies = session.query(Movie).all()
     for movie in movies:
-        director_name = movie.director.name if movie.director else "Indy Film"
-        print(f"ID: {movie.id}, Title: {movie.title}, Director: {director_name}")
+        director_name = movie.director.name if movie.director else "Unknown Director"
+        click.echo(f"ID: {movie.id}, Title: {movie.title}, Director: {director_name}")
 
+@click.group()
+def cli():
+    pass
 
-
-def main():
-    while True:
-        print("1. Add Movie")
-        print("2. List Movies")
-        print("3. Add Review")
-        print("4. Exit")
-        choice = input("Enter your choice: ")
-
-        if choice == '1':
-            title = input("Enter movie title: ")
-            director_id = int(input("Enter director ID: "))
-            create_movie(title, director_id)
-        elif choice == '2':
-            read_movies()
-        elif choice == '3':
-            movie_id = int(input("Enter movie ID: "))
-            rating = int(input("Enter rating: "))
-            comment = input("Enter comment: ")
-            create_review(movie_id, rating, comment)
-        elif choice == '4':
-            break
+cli.add_command(create_director)
+cli.add_command(create_movie)
+cli.add_command(create_review)
+cli.add_command(list_movies)
 
 if __name__ == "__main__":
-    main()
+    cli()

@@ -1,6 +1,7 @@
 #Flatiron-sample-p3-python-command-line-project
 -migrations problems
 - null movie_id 
+-data prints twice
 ## Project Proposals 
 
 ### Idea 1

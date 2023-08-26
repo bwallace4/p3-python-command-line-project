@@ -10,9 +10,9 @@ class Director(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    number_of_films = Column(Integer)
-    birthday = Column(DateTime())
-    nationality = Column(String)
+    number_of_films = Column(Integer, nullable=True)
+    birthday = Column(DateTime(),nullable=True)
+    nationality = Column(String,nullable=True)
     movies = relationship("Movie", backref="director")
 
 
@@ -31,7 +31,7 @@ class Movie(Base):
 
     id = Column(Integer,  primary_key=True)
     title = Column(String)
-    movie_length = Column(Integer) 
+    movie_length = Column(Integer,nullable=True) 
     director_id = Column(Integer, ForeignKey('directors.id')) 
     reviews = relationship("Review", backref="movie",)
 
@@ -68,7 +68,7 @@ class Review(Base):
  
 
 
-engine = create_engine('sqlite:///movies.db', echo=True)
+engine = create_engine('sqlite:///library.db', echo=True)
 Base.metadata.create_all(engine)
 
 
@@ -77,7 +77,7 @@ session = Session()
 
 director = Director( name= "Spike Lee", number_of_films=52, nationality="American", birthday=
 datetime(
-year = 1879, month= 3, day = 4))
+year = 1957, month= 3, day = 20))
 session.add(director)
 session.commit()
 
