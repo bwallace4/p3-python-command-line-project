@@ -40,7 +40,8 @@ models.py is where I keep my data tables.
 
 First step is creating the database by running models.py
 second step is running seed.py to add some random data to the database
-
+third step is opening the database using sqlite explorer
+last step is running cli.py and using the terminal to run commands
 
 
 ## License
