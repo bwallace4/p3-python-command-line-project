@@ -38,6 +38,9 @@ seed.py is where i seed my data using the faker library.
 debug.py is where I test bugs in my application.
 models.py is where I keep my data tables.
 
+First step is creating the database by running models.py
+second step is running seed.py to add some random data to the database
+
 
 
 ## License
