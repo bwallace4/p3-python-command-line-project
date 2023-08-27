@@ -44,6 +44,8 @@ third step is opening the database using sqlite explorer
 last step is running cli.py and using the terminal to run commands
 python cli.py create_user
 
+Troubleshooting my app may require you to delete the library.db then remake it by running the models,py script
+
 
 ## License
 
