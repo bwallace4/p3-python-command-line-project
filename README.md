@@ -32,11 +32,11 @@ python3 and pip
 
 ## Usage
 HOW we communicate with the terminal run 
- ./cli.py
-My lib.py - is where I keep most of my data.
-seed.py - is where i seed my data using the faker library.
-debug.py-  is where I test bugs in my application.
-models.py - is where I keep my data tables.
+ ./cli.py........
+My lib.py - is where I keep most of my data.......
+seed.py - is where i seed my data using the faker library.......
+debug.py-  is where I test bugs in my application......
+models.py - is where I keep my data tables......
 
 FIRST STEP is creating the database by running models.py
 SECOND STEP is running seed.py to add some random data to the database
