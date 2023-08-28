@@ -38,13 +38,14 @@ seed.py - is where i seed my data using the faker library.......
 debug.py-  is where I test bugs in my application......
 models.py - is where I keep my data tables......
 
-FIRST STEP is creating the database by running models.py
-SECOND STEP is running seed.py to add some random data to the database
-THIRD STEP is opening the database using sqlite explorer
-LAST STEP is running cli.py and using the terminal to run commands
-python cli.py create_user
+FIRST STEP----- is creating the database by running models.py
+SECOND STEP---- is opening the database using sqlite explorer
+THIRD STEP---  is running cli.py and using the terminal to run commands
+FOURTH STEP ----is running seed.py to add some random data to the database
+python cli.py create_user,list_movies......
 
 Troubleshooting my app may require you to delete the library.db then remake it by running the models,py script
+
 
 
 ## License
