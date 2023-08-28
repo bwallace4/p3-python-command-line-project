@@ -2,7 +2,7 @@
 
 
 As a big fan of movies and Hollywood in general, I thought how could i design my project to include this. Sometimes I forget who directed some of my favorite films. 
-DIRECTME is a command line interface that allows the user to query data from my database in Sqlalchemy. a film library database. Giving the user options on updating and reading information about the film industry. Whether its the director, the reviews or the movie itself. The three tables creates a one-to-many relationship and are joined together by foreign keys. 
+DIRECTME is a command line interface that allows the user to query data from my database in Sqlalchemy, a film library database. Giving the user options on updating and reading information about the film industry. Whether its the director, the reviews or the movie itself. The three tables creates a one-to-many relationship and are joined together by foreign keys. 
 
 ## Table of Contents
 
@@ -31,17 +31,17 @@ python3 and pip
 4. Run the project: `python cli.py` 
 
 ## Usage
+HOW we communicate with the terminal run 
+ ./cli.py
+My lib.py - is where I keep most of my data.
+seed.py - is where i seed my data using the faker library.
+debug.py-  is where I test bugs in my application.
+models.py - is where I keep my data tables.
 
-This is how we communicate with the terminal run  ./cli.py
-My lib.py is where I keep most of my data.
-seed.py is where i seed my data using the faker library.
-debug.py is where I test bugs in my application.
-models.py is where I keep my data tables.
-
-First step is creating the database by running models.py
-second step is running seed.py to add some random data to the database
-third step is opening the database using sqlite explorer
-last step is running cli.py and using the terminal to run commands
+FIRST STEP is creating the database by running models.py
+SECOND STEP is running seed.py to add some random data to the database
+THIRD STEP is opening the database using sqlite explorer
+LAST STEP is running cli.py and using the terminal to run commands
 python cli.py create_user
 
 Troubleshooting my app may require you to delete the library.db then remake it by running the models,py script
