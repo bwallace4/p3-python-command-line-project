@@ -3,7 +3,7 @@
 from datetime import datetime
 import click
 from sqlalchemy.orm import sessionmaker
-from models import  Director, Movie, Review, engine
+from models import  Director, Movie, engine
 
 
 
@@ -37,40 +37,6 @@ def create_movie():
     session.commit()
     click.echo("Movie created!")
 
-@click.command()
-def create_review():
-    movie_id = click.prompt("Enter movie ID", type=int)
-    rating = click.prompt("Enter rating", type=int)
-    comment = click.prompt("Enter comment")
-    review = Review(movie_id=movie_id, rating=rating, comment=comment)
-    session.add(review)
-    session.commit()
-    click.echo("Review created!")
-
-@click.command()
-def list_movies():
-    movies = session.query(Movie).all()
-    for movie in movies:
-        director_name = movie.director.name if movie.director else "Unknown Director"
-        click.echo(f"ID: {movie.id}, Title: {movie.title}, Director: {director_name}")
-
-@click.command()
-def update_movie():
-    movie_id = click.prompt("Enter movie ID", type=int)
-    movie = session.query(Movie).filter_by(id=movie_id).first()
-    if movie:
-        new_title = click.prompt("Enter new movie title")
-        new_length = click.prompt("Enter new movie length", type=int)
-        movie.title = new_title
-        movie.movie_length = new_length
-        session.commit()
-        click.echo("Movie updated!")
-    else:
-        click.echo("Movie not found.")
-
-
-
-
 
 @click.group()
 def cli():
@@ -79,9 +45,6 @@ def cli():
 
 cli.add_command(create_director)
 cli.add_command(create_movie)
-cli.add_command(create_review)
-cli.add_command(list_movies)
-cli.add_command(update_movie)
 
 
 

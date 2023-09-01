@@ -1,7 +1,7 @@
 from faker import Faker
 import random
 from sqlalchemy.orm.exc import NoResultFound
-from models import Director, Movie, Review, Session
+from models import Director, Movie, Session
 
 fake = Faker()
 
@@ -23,11 +23,6 @@ def add_director(name, number_of_films, nationality, birthday):
     session.commit()
     print("Director added successfully.")
 
-def add_review(movie_id, rating, comment):
-    new_review = Review(movie_id=movie_id, rating=rating, comment=comment)
-    session.add(new_review)
-    session.commit()
-    print("Review added successfully.")
 
 def add_random_data():
     for _ in range(10):
@@ -46,13 +41,6 @@ def add_random_data():
 
         add_movie(title, length, director.id)
 
-    movies = session.query(Movie).all()
-    for _ in range(30):
-        movie = random.choice(movies)
-        rating = random.randint(1, 10)
-        comment = fake.paragraph()
-
-        add_review(movie.id, rating, comment)
 
 if __name__ == "__main__":
     add_random_data()
