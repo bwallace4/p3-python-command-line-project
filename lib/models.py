@@ -12,8 +12,8 @@ class Director(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     number_of_films = Column(Integer)
-    birthday = Column(DateTime())
-    nationality = Column(String, nullable=True)
+    birthday = Column(DateTime(),)
+    nationality = Column(String)
     movies = relationship("Movie", backref="director")
 
     def __init__(self, name, birthday, number_of_films, nationality):
@@ -29,7 +29,7 @@ class Movie(Base):
     __tablename__ = 'movies'
     id = Column(Integer, primary_key=True)
     title = Column(String)
-    movie_length = Column(Integer)
+    movie_length = Column(Integer,)
     director_id = Column(Integer, ForeignKey('directors.id'))
 
     def __init__(self, title, movie_length, director_id):

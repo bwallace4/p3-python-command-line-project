@@ -7,7 +7,7 @@ session = Session()
 
 @click.command()
 def main():
-    click.echo(" Welcome to DirectMe: Your Movie Director Database")
+    click.echo(" Welcome to DirectMe: \nYour Movie Director Database")
     while True:
         user_input = click.prompt("Enter a command (type 'help' for options, or 'exit' to quit):", type=str)
         if user_input.lower() == 'exit':
@@ -43,9 +43,13 @@ def add_movie():
     movie_length = click.prompt("Enter the movie length (in minutes):", type=int)
     director_id = click.prompt("Enter the director's ID:", type=int)
 
-    new_movie = Movie(title=title, movie_length=movie_length, director_id=director_id)
-    session.add(new_movie)
-    session.commit()
+    existing_movie = session.query(Movie).filter_by(title=title, director_id=director_id).first()
+    if existing_movie:
+        click.echo("Movie already exists.")
+    else:
+        new_movie = Movie(title=title, movie_length=movie_length, director_id=director_id)
+        session.add(new_movie)
+        session.commit()
     click.echo("Movie added successfully.")
 
 def create_director():
@@ -61,11 +65,15 @@ def create_director():
         click.echo("Invalid date format. Please use YYYY-MM-DD.")
         return
 
-    director = Director(name=name, number_of_films=number_of_films, nationality=nationality, birthday=birthday)
-    session.add(director)
-    session.commit()
+    existing_director = session.query(Director).filter_by(name=name).first()
+    if existing_director:
+        click.echo("Director already exists.")
+    else:
+        director = Director(name=name, number_of_films=number_of_films, nationality=nationality, birthday=birthday)
+        session.add(director)
+        session.commit()
+        click.echo("Director created successfully!")
     
-    click.echo("Director created successfully!")
 
 def list_directors():
     click.echo("List of Directors:")
